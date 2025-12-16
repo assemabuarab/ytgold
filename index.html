@@ -934,6 +934,32 @@
         height: 50px;
       }
     }
+    
+    /* شاشة التحميل */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--dark-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+body.loading-complete {
+  overflow: auto;
+}
+
+#loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
   </style>
   
   <!-- كود Adsterra -->
@@ -1328,22 +1354,29 @@
     </div>
   </footer>
 
-  <script>
+<script>
     document.addEventListener("DOMContentLoaded", () => {
       // محاكاة تقدم التحميل
       let progress = 0;
       const progressBar = document.getElementById('loaderBar');
+      const loader = document.getElementById('loader');
       const progressInterval = setInterval(() => {
         progress += Math.random() * 10;
         progressBar.style.width = `${progress}%`;
         
         if (progress >= 100) {
           clearInterval(progressInterval);
-          document.getElementById('loader').style.opacity = '0';
+          // إخفاء شاشة التحميل بسلاسة
+          loader.style.opacity = '0';
+          loader.style.visibility = 'hidden';
+          loader.style.pointerEvents = 'none';
+          loader.style.transition = 'opacity 0.5s ease, visibility 0.5s ease';
+          
+          // تمكين التمرير وإمكانية التفاعل
+          document.body.style.overflow = 'auto';
+          
+          // تحميل الإعلانات بعد انتهاء شاشة التحميل
           setTimeout(() => {
-            document.getElementById('loader').style.display = 'none';
-            
-            // تحميل الإعلانات بعد انتهاء شاشة التحميل
             loadAdsterraAds();
           }, 500);
         }
@@ -1352,6 +1385,17 @@
       // تعيين اللغة التلقائي
       const userLang = navigator.language.startsWith("ar") ? "ar" : "en";
       setLanguage(userLang);
+      
+      // ضمان إخفاء شاشة التحميل في حالة حدوث خطأ
+      setTimeout(() => {
+        if (loader.style.opacity !== '0') {
+          clearInterval(progressInterval);
+          loader.style.opacity = '0';
+          loader.style.visibility = 'hidden';
+          loader.style.pointerEvents = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      }, 5000); // إخفاء تلقائي بعد 5 ثوانٍ كحد أقصى
     });
 
     let lang = 'ar';
@@ -1385,6 +1429,9 @@
           clearInterval(interval);
           countdownBox.style.display = "none";
           finalBtn.style.display = "flex";
+          
+          // تمرير سلس للزر الجديد
+          finalBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }, 1000);
     }
@@ -1392,40 +1439,29 @@
     // دالة لتحميل إعلانات Adsterra
     function loadAdsterraAds() {
       // هنا يمكنك إضافة كود Adsterra الفعلي
-      // مثال:
-      /*
-      // إعلان 728x90
-      var adTop = document.getElementById('adsterra-top-banner');
-      adTop.innerHTML = '<script type="text/javascript">atOptions = { "key": "your_key_728x90", "format": "iframe", "height": 90, "width": 728, "params": {} };</script><script type="text/javascript" src="//www.highperformanceformat.com/your_key_728x90/invoke.js"></script>';
+      console.log('جاري تحميل الإعلانات...');
       
-      // إعلان 300x250
-      var adMiddle = document.getElementById('adsterra-middle-banner');
-      adMiddle.innerHTML = '<script type="text/javascript">atOptions = { "key": "your_key_300x250", "format": "iframe", "height": 250, "width": 300, "params": {} };</script><script type="text/javascript" src="//www.highperformanceformat.com/your_key_300x250/invoke.js"></script>';
-      
-      // إعلان Native
-      var adNative = document.getElementById('adsterra-native');
-      adNative.innerHTML = '<script type="text/javascript">atOptions = { "key": "your_key_native", "format": "iframe", "height": 300, "width": 300, "params": {} };</script><script type="text/javascript" src="//www.highperformanceformat.com/your_key_native/invoke.js"></script>';
-      
-      // إعلان 468x60
-      var adBottom = document.getElementById('adsterra-bottom-banner');
-      adBottom.innerHTML = '<script type="text/javascript">atOptions = { "key": "your_key_468x60", "format": "iframe", "height": 60, "width": 468, "params": {} };</script><script type="text/javascript" src="//www.highperformanceformat.com/your_key_468x60/invoke.js"></script>';
-      
-      // إعلان 320x50
-      var adFooter = document.getElementById('adsterra-footer-mobile');
-      adFooter.innerHTML = '<script type="text/javascript">atOptions = { "key": "your_key_320x50", "format": "iframe", "height": 50, "width": 320, "params": {} };</script><script type="text/javascript" src="//www.highperformanceformat.com/your_key_320x50/invoke.js"></script>';
-      */
-      
-      // إضافة حدث لتحميل الإعلانات عند التمرير
-      window.addEventListener('scroll', function() {
-        var scrollPosition = window.scrollY + window.innerHeight;
-        var documentHeight = document.documentElement.scrollHeight;
-        
-        if (scrollPosition >= documentHeight * 0.8) {
-          // يمكنك تحميل إعلانات إضافية هنا
-        }
-      });
+      // مثال بسيط لمحاكاة تحميل الإعلانات
+      setTimeout(() => {
+        document.querySelectorAll('.ad-container').forEach(ad => {
+          // يمكنك هنا إضافة محتوى الإعلان الحقيقي
+          ad.innerHTML += '<div style="width:100%;height:100%;background:rgba(212,175,55,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px;">مساحة إعلانية<br>Ad Space</div>';
+        });
+      }, 1000);
     }
-  </script>
+    
+    // إضافة خطأ استرجاع في حالة فشل تحميل الصفحة
+    window.addEventListener('error', function(e) {
+      console.error('حدث خطأ:', e.error);
+      const loader = document.getElementById('loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        loader.style.pointerEvents = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+</script>
   
   <!-- Popunder Adsterra (اختياري - يمكن وضعه في النهاية) -->
   <!--
