@@ -40,8 +40,6 @@
   <!-- أيقونات -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-<script data-cfasync="false" async type="text/javascript" src="//kx.oblatasirex.com/r0WLbXfaKUkzQ/NgkJq"></script>
-  
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W3QKTBZDQ0"></script>
 <script>
@@ -51,6 +49,21 @@
 
   gtag('config', 'G-W3QKTBZDQ0');
 </script>
+  
+  <!-- كود Adsterra العام -->
+  <script type="text/javascript">
+	  atOptions = {
+		'key' : '76777c251134ef466e379564a354fc51',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	  };
+	</script>
+	<script
+	  type="text/javascript"
+	  src="https://www.highperformanceformat.com/76777c251134ef466e379564a354fc51/invoke.js"
+	></script>
   
   <style>
     :root {
@@ -90,21 +103,24 @@
     /* شاشة التحميل */
     #loader {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: var(--dark-bg);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     
     .loader-content {
       text-align: center;
       padding: 30px;
       border-radius: 16px;
-      background: rgba(30, 30, 30, 0.9);
+      background: rgba(30, 30, 30, 0.95);
       box-shadow: var(--shadow);
       border: 2px solid var(--gold-primary);
     }
@@ -256,7 +272,7 @@
     /* المحتوى الرئيسي */
     .main-content {
       max-width: 1200px;
-      margin: -40px auto 30px;
+      margin: 30px auto;
       padding: 0 15px;
       position: relative;
       z-index: 5;
@@ -823,9 +839,10 @@
       animation-delay: -2s;
     }
     
-    /* أنماط الإعلانات الجديدة */
+    /* أنماط الإعلانات */
     .ad-container {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       margin: 20px auto;
@@ -833,13 +850,16 @@
       background: rgba(30, 30, 30, 0.5);
       border-radius: 12px;
       border: 1px solid #444;
+      position: relative;
     }
     
     .ad-label {
       text-align: center;
-      font-size: 12px;
+      font-size: 11px;
       color: #888;
-      margin-bottom: 5px;
+      padding: 5px 10px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -848,56 +868,66 @@
     
     .ad-label i {
       color: var(--gold-primary);
+      font-size: 10px;
     }
     
-    /* إعلان 300x250 - مربع متوسط */
-    .ad-300x250 {
-      width: 300px;
-      height: 250px;
+    .ad-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
     
-    /* إعلان 728x90 - شريط عرضي */
+    /* إعلان 728x90 */
     .ad-728x90 {
       width: 728px;
       height: 90px;
       max-width: 100%;
     }
     
-    /* إعلان 468x60 - شريط صغير */
+    /* إعلان 468x60 */
     .ad-468x60 {
       width: 468px;
       height: 60px;
       max-width: 100%;
     }
     
-    /* إعلان 320x50 - موبايل */
+    /* إعلان 320x50 */
     .ad-320x50 {
       width: 320px;
       height: 50px;
       max-width: 100%;
     }
     
-    /* إعلان 160x600 - شريط جانبي */
-    .ad-160x600 {
-      width: 160px;
-      height: 600px;
-      max-height: 600px;
+    /* إعلان 300x250 */
+    .ad-300x250 {
+      width: 300px;
+      height: 250px;
+      max-width: 100%;
     }
     
-    /* إعلان 300x600 - شريط جانبي كبير */
+    /* إعلان 300x600 */
     .ad-300x600 {
       width: 300px;
       height: 600px;
       max-height: 600px;
     }
     
-    /* نيتيف إعلان */
+    /* إعلان 160x600 */
+    .ad-160x600 {
+      width: 160px;
+      height: 600px;
+      max-height: 600px;
+    }
+    
+    /* Native Ad */
     .native-ad {
       width: 100%;
-      max-width: 1200px;
       height: auto;
-      min-height: 250px;
-      margin: 25px auto;
+      min-height: 200px;
+      margin: 20px auto;
     }
     
     /* تصميم متجاوب للإعلانات */
@@ -912,14 +942,10 @@
         height: 60px;
       }
       
-      .ad-160x600,
-      .ad-300x600 {
+      .ad-300x600,
+      .ad-160x600 {
         width: 100%;
         height: 300px;
-      }
-      
-      .native-ad {
-        min-height: 200px;
       }
     }
     
@@ -933,46 +959,18 @@
         width: 100%;
         height: 50px;
       }
+      
+      .native-ad {
+        min-height: 150px;
+      }
     }
     
-    /* شاشة التحميل */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: var(--dark-bg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-body.loading-complete {
-  overflow: auto;
-}
-
-#loader.loaded {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+    /* محاذاة خاصة للإعلانات */
+    .ad-center {
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
-  
-  <!-- كود Adsterra -->
-  <script type="text/javascript">
-    atOptions = {
-      'key' : 'your_adsterra_key_here',
-      'format' : 'iframe',
-      'height' : 250,
-      'width' : 300,
-      'params' : {}
-    };
-  </script>
-  <script type="text/javascript" src="//www.highperformanceformat.com/your_adsterra_key_here/invoke.js"></script>
 </head>
 
 <body>
@@ -1012,34 +1010,6 @@ body.loading-complete {
     </div>
   </div>
 
-  <!-- إعلان 728x90 - أعلى الصفحة -->
-  <div class="ad-container ad-728x90" id="ad-top">
-    <div class="ad-label">
-      <i class="fas fa-ad"></i>
-      <span data-lang="ar">إعلان</span>
-      <span data-lang="en">Advertisement</span>
-    </div>
-    <!-- ضع كود Adsterra 728x90 هنا -->
-    
-    <script type="text/javascript">
-  atOptions = {
-  	'key' : '8dbd66d9c8499d2272d00fafa40a5982',
-  	'format' : 'iframe',
-  	'height' : 90,
-  	'width' : 728,
-  	'params' : {}
-  };
-</script>
-<script
-  type="text/javascript"
-  src="https://www.highperformanceformat.com/8dbd66d9c8499d2272d00fafa40a5982/invoke.js"
-></script>
-    
-    <div id="adsterra-top-banner">
-      <!-- مثال: <script src="https://adsterra.com/your-code-728x90"></script> -->
-    </div>
-  </div>
-
   <!-- الهيدر -->
   <header class="header">
     <div class="header-content">
@@ -1054,10 +1024,35 @@ body.loading-complete {
     </div>
   </header>
 
+  <!-- إعلان 728x90 - أعلى المحتوى -->
+  <div class="ad-container ad-728x90 ad-center" id="ad-top">
+    <div class="ad-label">
+      <i class="fas fa-ad"></i>
+      <span data-lang="ar">إعلان</span>
+      <span data-lang="en">Ad</span>
+    </div>
+    <div class="ad-content">
+      <!-- كود Adsterra 728x90 -->
+      <script type="text/javascript">
+		  atOptions = {
+			'key' : '8dbd66d9c8499d2272d00fafa40a5982',
+			'format' : 'iframe',
+			'height' : 90,
+			'width' : 728,
+			'params' : {}
+		  };
+		</script>
+		<script
+		  type="text/javascript"
+		  src="https://www.highperformanceformat.com/8dbd66d9c8499d2272d00fafa40a5982/invoke.js"
+		></script>
+    </div>
+  </div>
+
   <!-- المحتوى الرئيسي -->
   <div class="main-content">
     <div class="content-grid">
-      <!-- إعلان 300x250 داخل بطاقة التطبيق -->
+      <!-- بطاقة التطبيق -->
       <div class="app-card">
         <div class="featured-badge" data-lang="ar">مميز</div>
         <div class="featured-badge" data-lang="en">Featured</div>
@@ -1079,30 +1074,28 @@ body.loading-complete {
           The premium golden version of YouTube, offering an exceptional experience with advanced features like ad-free viewing, background playback, 4K support, and video downloads!
         </p>
         
-        <!-- إعلان 300x250 -->
-        <div class="ad-container ad-300x250" id="ad-middle">
+        <!-- إعلان 300x250 داخل البطاقة -->
+        <div class="ad-container ad-300x250 ad-center" id="ad-middle">
           <div class="ad-label">
             <i class="fas fa-ad"></i>
             <span data-lang="ar">إعلان</span>
-            <span data-lang="en">Advertisement</span>
+            <span data-lang="en">Ad</span>
           </div>
-          <!-- ضع كود Adsterra 300x250 هنا -->
-          
-          <script type="text/javascript">
-  atOptions = {
-  	'key' : '91fcec20194f0b91e75fe86ae2662f54',
-  	'format' : 'iframe',
-  	'height' : 250,
-  	'width' : 300,
-  	'params' : {}
-  };
-</script>
-<script
-  type="text/javascript"
-  src="https://www.highperformanceformat.com/91fcec20194f0b91e75fe86ae2662f54/invoke.js"
-></script>
-          <div id="adsterra-middle-banner">
-            <!-- مثال: <script src="https://adsterra.com/your-code-300x250"></script> -->
+          <div class="ad-content">
+            <!-- كود Adsterra 300x250 -->
+            <script type="text/javascript">
+			  atOptions = {
+				'key' : '91fcec20194f0b91e75fe86ae2662f54',
+				'format' : 'iframe',
+				'height' : 250,
+				'width' : 300,
+				'params' : {}
+			  };
+			</script>
+			<script
+			  type="text/javascript"
+			  src="https://www.highperformanceformat.com/91fcec20194f0b91e75fe86ae2662f54/invoke.js"
+			></script>
           </div>
         </div>
         
@@ -1124,9 +1117,27 @@ body.loading-complete {
             <div class="meta-value" data-lang="ar">آمن</div>
             <div class="meta-value" data-lang="en">Safe</div>
             <div class="meta-label" data-lang="ar">بدون فيروسات</div>
-            <div class="meta-label" data-lang="en">Virus Free</span></div>
+            <div class="meta-label" data-lang="en">Virus Free</div>
           </div>
         </div>
+		<div class="ad-label">
+            <i class="fas fa-ad"></i>
+            <span data-lang="ar">إعلان</span>
+            <span data-lang="en">Ad</span>
+          </div>
+		
+		<div class="ad-box ad-mobile">
+		  <script type="text/javascript">
+			atOptions = {
+			  'key' : '76777c251134ef466e379564a354fc51',
+			  'format' : 'iframe',
+			  'height' : 50,
+			  'width' : 320,
+			  'params' : {}
+			};
+		  </script>
+		  <script src="https://www.highperformanceformat.com/76777c251134ef466e379564a354fc51/invoke.js"></script>
+		</div>
         
         <div class="download-box">
           <a href="javascript:void(0);" onclick="startCountdown()" id="fileInfoBox" class="file-box">
@@ -1143,8 +1154,6 @@ body.loading-complete {
 
           <div id="countdownBox" class="countdown-box"></div>
 
-          <!-- مكان إضافة رابط التحميل الحقيقي -->
-          <!-- قم بتغيير الرابط أدناه إلى رابط التحميل الخاص بك -->
           <a href="https://dlll.apkm.app/ytgold/17/YouTube_Gold_V17.apk" 
              id="finalDownloadBox" class="download-btn" style="display: none;">
             <i class="fas fa-download"></i>
@@ -1159,24 +1168,21 @@ body.loading-complete {
         <h2 class="section-title" data-lang="ar">الميزات الذهبية</h2>
         <h2 class="section-title" data-lang="en">Gold Features</h2>
         
-        <!-- إعلان Native Banner داخل قسم الميزات -->
-        <div class="ad-container native-ad" id="ad-native">
+        <!-- إعلان Native -->
+        <div class="ad-container native-ad ad-center" id="ad-native">
           <div class="ad-label">
             <i class="fas fa-ad"></i>
-            <span data-lang="ar">إعلان</span>
-            <span data-lang="en">Advertisement</span>
+            <span data-lang="ar">إعلان Native</span>
+            <span data-lang="en">Ad Native</span>
           </div>
-          <!-- ضع كود Adsterra Native Banner هنا -->
-          
-          <script
-  async="async"
-  data-cfasync="false"
-  src="https://pl28273312.effectivegatecpm.com/8bb28a370552fbc397c406099c273ac8/invoke.js"
-></script>
-<div id="container-8bb28a370552fbc397c406099c273ac8"></div>
-          
-          <div id="adsterra-native">
-            <!-- مثال: <script src="https://adsterra.com/your-native-code"></script> -->
+          <div class="ad-content">
+            <!-- كود Adsterra Native -->
+            <script
+			  async="async"
+			  data-cfasync="false"
+			  src="https://pl28273312.effectivegatecpm.com/8bb28a370552fbc397c406099c273ac8/invoke.js"
+			></script>
+			<div id="container-8bb28a370552fbc397c406099c273ac8"></div>
           </div>
         </div>
         
@@ -1244,31 +1250,28 @@ body.loading-complete {
       </div>
     </div>
     
-    <!-- إعلان 468x60 بين الأقسام -->
-    <div class="ad-container ad-468x60" id="ad-bottom">
+    <!-- إعلان 468x60 تحت المحتوى -->
+    <div class="ad-container ad-468x60 ad-center" id="ad-bottom">
       <div class="ad-label">
         <i class="fas fa-ad"></i>
         <span data-lang="ar">إعلان</span>
-        <span data-lang="en">Advertisement</span>
+        <span data-lang="en">Ad</span>
       </div>
-      <!-- ضع كود Adsterra 468x60 هنا -->
-      
-      <script type="text/javascript">
-  atOptions = {
-  	'key' : 'b177c801d8a1b9a772a072809c148ada',
-  	'format' : 'iframe',
-  	'height' : 60,
-  	'width' : 468,
-  	'params' : {}
-  };
-</script>
-<script
-  type="text/javascript"
-  src="https://www.highperformanceformat.com/b177c801d8a1b9a772a072809c148ada/invoke.js"
-></script>
-      
-      <div id="adsterra-bottom-banner">
-        <!-- مثال: <script src="https://adsterra.com/your-code-468x60"></script> -->
+      <div class="ad-content">
+        <!-- كود Adsterra 468x60 -->
+        <script type="text/javascript">
+		  atOptions = {
+			'key' : 'b177c801d8a1b9a772a072809c148ada',
+			'format' : 'iframe',
+			'height' : 60,
+			'width' : 468,
+			'params' : {}
+		  };
+		</script>
+		<script
+		  type="text/javascript"
+		  src="https://www.highperformanceformat.com/b177c801d8a1b9a772a072809c148ada/invoke.js"
+		></script>
       </div>
     </div>
   </div>
@@ -1304,31 +1307,28 @@ body.loading-complete {
         <h3 class="footer-section-title" data-lang="ar">روابط مفيدة</h3>
         <h3 class="footer-section-title" data-lang="en">Useful Links</h3>
         
-        <!-- إعلان 320x50 في الفوتر للجوال -->
-        <div class="ad-container ad-320x50" id="ad-footer-mobile">
+        <!-- إعلان 320x50 للجوال في الفوتر -->
+        <div class="ad-container ad-320x50 ad-center" id="ad-footer">
           <div class="ad-label">
             <i class="fas fa-ad"></i>
             <span data-lang="ar">إعلان</span>
-            <span data-lang="en">Advertisement</span>
+            <span data-lang="en">Ad</span>
           </div>
-          <!-- ضع كود Adsterra 320x50 هنا -->
-          
-          <script type="text/javascript">
-  atOptions = {
-  	'key' : '76777c251134ef466e379564a354fc51',
-  	'format' : 'iframe',
-  	'height' : 50,
-  	'width' : 320,
-  	'params' : {}
-  };
-</script>
-<script
-  type="text/javascript"
-  src="https://www.highperformanceformat.com/76777c251134ef466e379564a354fc51/invoke.js"
-></script>
-          
-          <div id="adsterra-footer-mobile">
-            <!-- مثال: <script src="https://adsterra.com/your-code-320x50"></script> -->
+          <div class="ad-content">
+            <!-- كود Adsterra 320x50 -->
+            <script type="text/javascript">
+			  atOptions = {
+				'key' : '76777c251134ef466e379564a354fc51',
+				'format' : 'iframe',
+				'height' : 50,
+				'width' : 320,
+				'params' : {}
+			  };
+			</script>
+			<script
+			  type="text/javascript"
+			  src="https://www.highperformanceformat.com/76777c251134ef466e379564a354fc51/invoke.js"
+			></script>
           </div>
         </div>
         
@@ -1354,48 +1354,38 @@ body.loading-complete {
     </div>
   </footer>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // محاكاة تقدم التحميل
-      let progress = 0;
-      const progressBar = document.getElementById('loaderBar');
-      const loader = document.getElementById('loader');
-      const progressInterval = setInterval(() => {
-        progress += Math.random() * 10;
-        progressBar.style.width = `${progress}%`;
-        
-        if (progress >= 100) {
-          clearInterval(progressInterval);
-          // إخفاء شاشة التحميل بسلاسة
+  <script>
+    // شاشة التحميل بسيطة وفعالة
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loader = document.getElementById('loader');
+        if (loader) {
           loader.style.opacity = '0';
-          loader.style.visibility = 'hidden';
-          loader.style.pointerEvents = 'none';
-          loader.style.transition = 'opacity 0.5s ease, visibility 0.5s ease';
-          
-          // تمكين التمرير وإمكانية التفاعل
-          document.body.style.overflow = 'auto';
-          
-          // تحميل الإعلانات بعد انتهاء شاشة التحميل
-          setTimeout(() => {
-            loadAdsterraAds();
+          setTimeout(function() {
+            loader.style.display = 'none';
           }, 500);
+        }
+      }, 1000);
+    });
+
+    // البدء فوراً بمحاكاة التحميل
+    document.addEventListener('DOMContentLoaded', function() {
+      const loaderBar = document.getElementById('loaderBar');
+      let progress = 0;
+      
+      const interval = setInterval(function() {
+        progress += Math.random() * 15;
+        if (loaderBar) {
+          loaderBar.style.width = progress + '%';
+        }
+        if (progress >= 100) {
+          clearInterval(interval);
         }
       }, 100);
       
       // تعيين اللغة التلقائي
       const userLang = navigator.language.startsWith("ar") ? "ar" : "en";
       setLanguage(userLang);
-      
-      // ضمان إخفاء شاشة التحميل في حالة حدوث خطأ
-      setTimeout(() => {
-        if (loader.style.opacity !== '0') {
-          clearInterval(progressInterval);
-          loader.style.opacity = '0';
-          loader.style.visibility = 'hidden';
-          loader.style.pointerEvents = 'none';
-          document.body.style.overflow = 'auto';
-        }
-      }, 5000); // إخفاء تلقائي بعد 5 ثوانٍ كحد أقصى
     });
 
     let lang = 'ar';
@@ -1410,7 +1400,7 @@ body.loading-complete {
 
     function startCountdown() {
       document.getElementById("fileInfoBox").style.display = "none";
-      var counter = 6;
+      var counter = 5;
       var countdownBox = document.getElementById("countdownBox");
       var finalBtn = document.getElementById("finalDownloadBox");
 
@@ -1425,7 +1415,7 @@ body.loading-complete {
           ? `<i class="fas fa-spinner fa-spin"></i> جاري التحضير للتنزيل... ${counter}`
           : `<i class="fas fa-spinner fa-spin"></i> Preparing download... ${counter}`;
 
-        if (counter === 0) {
+        if (counter <= 0) {
           clearInterval(interval);
           countdownBox.style.display = "none";
           finalBtn.style.display = "flex";
@@ -1436,41 +1426,16 @@ body.loading-complete {
       }, 1000);
     }
     
-    // دالة لتحميل إعلانات Adsterra
-    function loadAdsterraAds() {
-      // هنا يمكنك إضافة كود Adsterra الفعلي
-      console.log('جاري تحميل الإعلانات...');
-      
-      // مثال بسيط لمحاكاة تحميل الإعلانات
-      setTimeout(() => {
-        document.querySelectorAll('.ad-container').forEach(ad => {
-          // يمكنك هنا إضافة محتوى الإعلان الحقيقي
-          ad.innerHTML += '<div style="width:100%;height:100%;background:rgba(212,175,55,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px;">مساحة إعلانية<br>Ad Space</div>';
-        });
-      }, 1000);
-    }
-    
-    // إضافة خطأ استرجاع في حالة فشل تحميل الصفحة
-    window.addEventListener('error', function(e) {
-      console.error('حدث خطأ:', e.error);
+    // خطأ استرجاع لشاشة التحميل
+    setTimeout(function() {
       const loader = document.getElementById('loader');
-      if (loader) {
+      if (loader && loader.style.display !== 'none') {
         loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
-        loader.style.pointerEvents = 'none';
-        document.body.style.overflow = 'auto';
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 500);
       }
-    });
-</script>
-  
-  <!-- Popunder Adsterra (اختياري - يمكن وضعه في النهاية) -->
-  <!--
-  <script type="text/javascript">
-    var popunder = document.createElement('script');
-    popunder.type = 'text/javascript';
-    popunder.src = 'https://adsterra.com/popunder-script.js';
-    document.body.appendChild(popunder);
+    }, 3000);
   </script>
-  -->
 </body>
 </html>
