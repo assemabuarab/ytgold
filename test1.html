@@ -1430,21 +1430,7 @@
     }
     
     // دالة محاكاة الإعلانات (يمكنك استبدالها بكود Adsterra الحقيقي)
-    function loadAdsterraAds() {
-      // محاكاة محتوى الإعلانات
-      const adContainers = document.querySelectorAll('.ad-content');
-      adContainers.forEach(container => {
-        container.innerHTML = `
-          <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#888;font-size:12px;padding:10px;text-align:center;">
-            <div style="font-size:14px;color:#D4AF37;margin-bottom:5px;">Adsterra Ad</div>
-            <div style="font-size:10px;">300x250 - يمكنك استبدال هذا بكود Adsterra</div>
-          </div>
-        `;
-      });
-    }
     
-    // تحميل الإعلانات بعد تأخير بسيط
-    setTimeout(loadAdsterraAds, 1500);
     
     // خطأ استرجاع لشاشة التحميل
     setTimeout(function() {
