@@ -375,7 +375,6 @@
     .file-box img {
       width: 55px;
       height: 55px;
-      margin-right: 12px;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.2);
       padding: 7px;
@@ -399,27 +398,10 @@
       opacity: 0.9;
     }
     
-    .file-box .download-icon {
-      font-size: 22px;
-      margin-right: 8px;
-    }
+    
     
     /* زر تحميل MicroG */
-    .microg-box {
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, #4285F4, #34A853);
-      color: white;
-      padding: 16px;
-      border-radius: 14px;
-      box-shadow: 0 5px 12px rgba(66, 133, 244, 0.4);
-      text-decoration: none;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      margin-bottom: 15px;
-    }
+  
     
     .microg-box:hover {
       transform: translateY(-4px);
@@ -977,6 +959,41 @@
         gap: 20px;
       }
     }
+    
+    /* ===== Fix LTR/RTL alignment for download boxes ===== */
+
+/* اجعل مسافات الأيقونات تعتمد على الاتجاه */
+.file-box img,
+.microg-box img {
+  margin-right: 0;
+  margin-left: 0;
+  margin-inline-end: 12px; /* يمين في RTL / يسار في LTR */
+}
+
+/* محاذاة النص حسب اتجاه الصفحة */
+.file-box .text,
+.microg-box .text {
+  text-align: start; /* right في RTL / left في LTR */
+}
+
+/* أيقونة التحميل تكون بالنهاية دائمًا */
+.file-box .download-icon,
+.microg-box .download-icon {
+  margin-right: 0;
+  margin-left: 0;
+  margin-inline-start: 8px; /* يسار في RTL / يمين في LTR */
+}
+
+/* ضمان أن الأيقونة تروح لآخر الزر حسب الاتجاه */
+.file-box,
+.microg-box {
+  direction: inherit;
+}
+
+.file-box .download-icon,
+.microg-box .download-icon {
+  margin-inline-start: auto;  /* يدفعها للنهاية */
+}
   </style>
 </head>
 
@@ -1063,28 +1080,39 @@
           </div>
         </div>
         
-        <center><div id="responsive-1" data-google-query-id=""><div id="google_ads_iframe_/21849154601,23198772358/Ad.Plus-AI-Responsive_0__container__" style="border: 0pt none; width: 336px; height: 0px;"></div></div></center>
-               <div style="height: 20px;"></div>
-        
         <div class="download-box">
-          <a id="fileInfoBox" class="file-box">
+          <!-- زر تحميل يوتيوب الذهبي -->
+          <a href="javascript:void(0);" onclick="startCountdown()" id="fileInfoBox" class="file-box">
+   
+            <div class="text">
+              <div class="title">YouTube_Gold_v18</div>
+              <div class="size" data-lang="ar">اضغط للتحميل (187.5MB)</div>
+              <div class="size" data-lang="en">Click to download (187.5MB)</div>
+            </div>
+            <i class="fa-solid fa-file-arrow-down download-icon"></i>
+          </a>
+
+          <!-- زر تحميل MicroG -->
+          <a href="javascript:void(0);" onclick="startMicroGCountdown()" id="microgInfoBox" class="microg-box">
             
             <div class="text">
-              <div class="title">GBWhatsApp_Pro_v25.40</div>
-              <div class="size" data-lang="ar" style="display: inline-block;">اضغط للتحميل</div>
-              <div class="size" data-lang="en" style="display: none;">Click to download</div>
+              <div class="title">MicroG Services</div>
+              <div class="size" data-lang="ar">اضغط لتحميل التطبيق المساعد</div>
+              <div class="size" data-lang="en">Click to download helper app</div>
             </div>
             <i class="fa-solid fa-file-arrow-down download-icon"></i>
           </a>
 
           <div id="countdownBox" class="countdown-box"></div>
 
-          <a href="https://upfileapp.9aleh.com/file/2024/gb/GBWhatsApp_Pro_v25.45.apk" id="finalDownloadBox" class="download-btn" style="display: none;">
-            <i class="fas fa-download"></i>
-            <span data-lang="ar" style="display: inline-block;">تنزيل الآن</span>
-            <span data-lang="en" style="display: none;">Download Now</span>
-          </a>
-        </div>
+          <div id="finalDownloadBox" style="display: none;">
+            <a href="https://dlll.apkm.app/ytgold/18/YouTube_Gold_V18.apk" 
+               class="download-btn">
+              <i class="fas fa-download"></i>
+              <span data-lang="ar">تنزيل يوتيوب الذهبي الآن</span>
+              <span data-lang="en">Download YouTube Gold Now</span>
+            </a>
+          </div>
 
           <div id="microgDownloadBox" style="display: none;">
             <a href="https://dlll.apkm.app/microg/latest/microg.apk" 
